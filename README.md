@@ -1,5 +1,5 @@
 ## Welcome 
 
 
-For more demo see [link](https://guides.github.com/features/mastering-markdown/).
+ [Demo](https://colormark.github.io/foyocountdown/demo/).
 
