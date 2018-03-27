@@ -1,0 +1,49 @@
+.foyocountdown-container{
+	position: relative;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.foyocountdown-container:before{
+	content: "";
+	height: 1px;
+	width: 100%;
+	bottom: -1px;
+	background: #DDD;
+	position: absolute;
+	z-index: 1;
+}
+.foyocountdown-line{
+	min-height: 1px;
+	width: 100%;
+	bottom: -1px;
+	background: #FFF;
+	left:0;
+	position: absolute;
+	z-index: 10;
+	transition: all .5s linear 0s;
+	text-align: right;
+}
+.foyocountdown-flag{
+	left:0;
+	position: absolute;
+	z-index: 2;
+	height: 5px;
+	border-right:1px solid #DDD;
+	bottom: -5px;
+}
+.foyocountdown-icon{
+	flex-shrink:0;
+	flex-grow:0;
+	color:#999;
+	margin-right: 10px;
+}
+.foyocountdown-textlabel{
+	flex-grow:2;
+	z-index: 198;
+}
+.foyocountdown-timelabel{
+	align-self:flex-end;
+	z-index: 199;
+}

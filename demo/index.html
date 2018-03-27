@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foyo Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="../src/foyocountdown.css">
+  <style type="text/css">
+  	body{
+  		font-size: 13px;
+  	}
+
+  	@font-face {
+	  font-family: 'iconfont';  /* project id 605742 */
+	  src: url('//at.alicdn.com/t/font_605742_vfj3ba8nta6pqfr.eot');
+	  src: url('//at.alicdn.com/t/font_605742_vfj3ba8nta6pqfr.eot?#iefix') format('embedded-opentype'),
+	  url('//at.alicdn.com/t/font_605742_vfj3ba8nta6pqfr.woff') format('woff'),
+	  url('//at.alicdn.com/t/font_605742_vfj3ba8nta6pqfr.ttf') format('truetype'),
+	  url('//at.alicdn.com/t/font_605742_vfj3ba8nta6pqfr.svg#iconfont') format('svg');
+	}
+
+	.iconfont{
+	    font-family:"iconfont" !important;
+	    font-style:normal;
+	    -webkit-font-smoothing: antialiased;
+	    -webkit-text-stroke-width: 0.2px;
+	    -moz-osx-font-smoothing: grayscale;
+	}
+  </style>
+  </head>
+
+  <body>
+
+  	<h2>Foyo Countdown</h2>
+  	<h5>https://github.com/Colormark/FoyoCountdown</h5>
+	<hr />
+	</ul>
+		<li>分秒，自定义分秒符号</li>
+		<li>显示阴影：showShadow，默认不显示</li>
+		<li>function:onCounted</li>
+		<li>function:onZoneChange <span id="onZoneChangeTest"></span></li>
+	</ol>
+	<div id="test1" style="width: 80%;margin: 30px auto"></div>
+
+	</ul>
+		<li>时分秒</li>
+		<li>不显示阴影</li>
+		<li>隐藏刻度：hideMark，默认显示</li>
+	</ol>
+	<div id="test2" style="width: 80%;margin: 30px auto"></div>
+
+	</ul>
+		<li>天、时</li>
+		<li>显示ICON</li>
+		<li>设置ICON：<button onclick="setNewTestIcon()">设置</button></li>
+	</ol>
+	<div id="test3" style="width: 80%;margin: 30px auto"></div>
+
+	</ul>
+		<li>结束，并停留在一个时间点</li>
+	</ol>
+	<div id="test4" style="width: 80%;margin: 30px auto"></div>
+
+	</ul>
+		<li>有逾期继续计时效果:overduezone</li>
+		<li>自定义，线条高度和文字颜色</li>
+	</ol>
+	<div id="test5" style="width: 80%;margin: 30px auto"></div>
+
+
+	</ul>
+		<li>强制结束：<button onclick="stop()">结束</button></li>
+	</ol>
+	<div id="test6" style="width: 80%;margin: 30px auto"></div>
+
+
+	
+  </body>
+
+	<!-- 核心 -->
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../src/jquery.foyocountdown.js"></script>
+	<script type="text/javascript">
+		$("#test1").foyocountdown({
+			"startTime":new Date().getTime()-3000,
+			"currentTime":new Date().getTime(),
+			"showShadow":true,
+			"lblMinute": "'",
+            'lblSecond': "\"",
+			"timezone":[	
+				{
+					"second": 5,
+					"color": "#20ec20",
+					"label": "时间很充裕"
+				},
+				{
+					"second": 3,
+					"color": "#ffc107",
+					"label": "时间不多了"
+				},
+				{
+					"second": 2,
+					"color": "#FF9800",
+					"label": "时间很紧张"
+				},
+				{
+					"second": 2,
+					"color": "#ff5722",
+					"label": "快没时间了"
+				}
+			],
+			"onCounted": function($counter, objCounter){
+				objCounter.textLabel.hide("fast");
+				objCounter.timeLabel.hide("fast");
+				objCounter.hideMark();
+			},
+			"onZoneChange": function(currentZone){
+				$("#onZoneChangeTest").html('<font style="color:'+currentZone.color+'">'+currentZone.label+'</font>');
+			},
+			"debug":true
+		});
+
+
+		$("#test2").foyocountdown({
+			"startTime":new Date().getTime()-880000,
+			"currentTime":new Date().getTime(),
+			"hideMark":true,
+			"timezone":[	
+				{
+					"second": 1600,
+					"color": "#20ec20",
+					"label": "时间很充裕"
+				},
+				{
+					"second": 1500,
+					"color": "#ffc107",
+					"label": "时间不多了"
+				},
+				{
+					"second": 1500,
+					"color": "#FF9800",
+					"label": "时间很紧张"
+				},
+				{
+					"second": 300,
+					"color": "#ff5722",
+					"label": "快没时间了"
+				}
+			]
+		});
+
+		$("#test3").foyocountdown({
+			"startTime":new Date().getTime()-80000000,
+			"currentTime":new Date().getTime(),
+			"icon": '<i class="iconfont">&#xe723;</i>',
+			"timezone":[	
+				{
+					"second": 60000,
+					"color": "#20ec20",
+					"label": "时间很充裕"
+				},
+				{
+					"second": 50000,
+					"color": "#ffc107",
+					"label": "时间不多了"
+				},
+				{
+					"second": 50000,
+					"color": "#FF9800",
+					"label": "时间很紧张"
+				},
+				{
+					"second": 30000,
+					"color": "#ff5722",
+					"label": "快没时间了"
+				}
+			]
+		});
+
+		function setNewTestIcon(){
+			//var objCounter = $("#test3").data("foyocountdown");
+			//objCounter.setIcon('<i class="iconfont" style="color:green">&#xe668;</i>');
+			$("#test3").foyocountdownSetIcon('<i class="iconfont" style="color:green">&#xe722;</i>');
+		}
+
+
+
+		$("#test4").foyocountdown({
+			"startTime":new Date().getTime()-5000,
+			"currentTime":new Date().getTime(),
+			"showShadow":true,
+			"timezone":[	
+				{
+					"second": 20,
+					"color": "#20ec20",
+					"label": "时间很充裕"
+				},
+				{
+					"second": 10,
+					"color": "#ffc107",
+					"label": "时间不多了"
+				},
+				{
+					"second": 10,
+					"color": "#FF9800",
+					"label": "时间很紧张"
+				},
+				{
+					"second": 10,
+					"color": "#ff5722",
+					"label": "快没时间了"
+				}
+			],
+			"donezone":	{
+					"label": "完成,耗时",
+					"doneTime":new Date().getTime()+20000,
+			}
+		});
+
+
+		$("#test5").foyocountdown({
+			"startTime":new Date().getTime()-3000,
+			"currentTime":new Date().getTime(),
+			"timezone":[	
+				{
+					"second": 5,
+					"color": "#20ec20",
+					"label": "A"
+				},
+				{
+					"second": 3,
+					"color": "#ffc107",
+					"label": "A-"
+				},
+				{
+					"second": 2,
+					"color": "#FF9800",
+					"label": "B"
+				},
+				{
+					"second": 2,
+					"color": "#ff5722",
+					"label": "C"
+				}
+			],
+			"overduezone":	{
+					"color": "#8a2e11",
+					"label": "D 逾期"
+			},
+			'lineWidth': 18, //
+            'lineTextColor': '#FFF',
+            'lineWidthOnDone' : 1,
+            'lineTextColorWidthOnDone' : '#000',
+            "onCounted":function($counter, objCounter){
+				objCounter.timeLabel.css("color","#FFF");
+				objCounter.hideMark();
+			},
+		});
+
+
+		$("#test6").foyocountdown({
+			"startTime":new Date().getTime(),
+			"currentTime":new Date().getTime(),
+			'lineWidthOnDone' : 1,
+            'lineTextColorWidthOnDone' : 'green',
+			"timezone":[	
+				{
+					"second": 10,
+					"color": "#20ec20",
+					"label": "时间很充裕"
+				},
+				{
+					"second": 10,
+					"color": "#ffc107",
+					"label": "时间不多了"
+				},
+				{
+					"second": 10,
+					"color": "#ff5722",
+					"label": "快没时间了"
+				}
+			],
+			"overduezone":	{
+					"color": "#630",
+					"label": "逾期"
+			},
+		});
+
+		function stop(){
+			$("#test6").foyocountdownFrozen({
+				"label": "结束",
+				"doneTime":new Date().getTime(),
+				"icon":'<i class="iconfont" style="color:green">&#xe65e;</i>'
+			});
+		}
+
+	</script>
+
+	
+	
+</html>
